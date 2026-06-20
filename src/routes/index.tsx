@@ -1,29 +1,22 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { MemoryGame } from "@/components/MemoryGame";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Duplicate — 2-Player Memory Card Game" },
+      { name: "description", content: "A fast, modern two-player memory card game. Flip cards, find duplicates, and beat your opponent." },
+      { property: "og:title", content: "Duplicate — 2-Player Memory Card Game" },
+      { property: "og:description", content: "Flip cards, find duplicates, and beat your opponent in this fast, modern memory game." },
     ],
   }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main className="min-h-screen">
+      <MemoryGame />
+    </main>
   );
 }
