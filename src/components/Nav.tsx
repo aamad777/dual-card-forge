@@ -7,6 +7,7 @@ const items = [
   { to: "/reverse", label: "Reverse" },
   { to: "/battle", label: "Battle" },
   { to: "/duel", label: "Duel" },
+  { to: "/docker-lab", label: "Docker Lab" },
   { to: "/progress", label: "Progress" },
   { to: "/manage", label: "Add Card" },
 ] as const;
@@ -31,7 +32,7 @@ export function Nav() {
               {i.label}
             </Link>
           ))}
-        </nav>
+      </nav>
       </div>
     </header>
   );
