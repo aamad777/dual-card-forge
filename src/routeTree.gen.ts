@@ -9,8 +9,50 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ReverseRouteImport } from './routes/reverse'
+import { Route as ProgressRouteImport } from './routes/progress'
+import { Route as ManageRouteImport } from './routes/manage'
+import { Route as LibraryRouteImport } from './routes/library'
+import { Route as FlashcardsRouteImport } from './routes/flashcards'
+import { Route as DuelRouteImport } from './routes/duel'
+import { Route as BattleRouteImport } from './routes/battle'
 import { Route as IndexRouteImport } from './routes/index'
 
+const ReverseRoute = ReverseRouteImport.update({
+  id: '/reverse',
+  path: '/reverse',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProgressRoute = ProgressRouteImport.update({
+  id: '/progress',
+  path: '/progress',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ManageRoute = ManageRouteImport.update({
+  id: '/manage',
+  path: '/manage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LibraryRoute = LibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FlashcardsRoute = FlashcardsRouteImport.update({
+  id: '/flashcards',
+  path: '/flashcards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DuelRoute = DuelRouteImport.update({
+  id: '/duel',
+  path: '/duel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BattleRoute = BattleRouteImport.update({
+  id: '/battle',
+  path: '/battle',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +61,130 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/battle': typeof BattleRoute
+  '/duel': typeof DuelRoute
+  '/flashcards': typeof FlashcardsRoute
+  '/library': typeof LibraryRoute
+  '/manage': typeof ManageRoute
+  '/progress': typeof ProgressRoute
+  '/reverse': typeof ReverseRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/battle': typeof BattleRoute
+  '/duel': typeof DuelRoute
+  '/flashcards': typeof FlashcardsRoute
+  '/library': typeof LibraryRoute
+  '/manage': typeof ManageRoute
+  '/progress': typeof ProgressRoute
+  '/reverse': typeof ReverseRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/battle': typeof BattleRoute
+  '/duel': typeof DuelRoute
+  '/flashcards': typeof FlashcardsRoute
+  '/library': typeof LibraryRoute
+  '/manage': typeof ManageRoute
+  '/progress': typeof ProgressRoute
+  '/reverse': typeof ReverseRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/battle'
+    | '/duel'
+    | '/flashcards'
+    | '/library'
+    | '/manage'
+    | '/progress'
+    | '/reverse'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/battle'
+    | '/duel'
+    | '/flashcards'
+    | '/library'
+    | '/manage'
+    | '/progress'
+    | '/reverse'
+  id:
+    | '__root__'
+    | '/'
+    | '/battle'
+    | '/duel'
+    | '/flashcards'
+    | '/library'
+    | '/manage'
+    | '/progress'
+    | '/reverse'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  BattleRoute: typeof BattleRoute
+  DuelRoute: typeof DuelRoute
+  FlashcardsRoute: typeof FlashcardsRoute
+  LibraryRoute: typeof LibraryRoute
+  ManageRoute: typeof ManageRoute
+  ProgressRoute: typeof ProgressRoute
+  ReverseRoute: typeof ReverseRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/reverse': {
+      id: '/reverse'
+      path: '/reverse'
+      fullPath: '/reverse'
+      preLoaderRoute: typeof ReverseRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/progress': {
+      id: '/progress'
+      path: '/progress'
+      fullPath: '/progress'
+      preLoaderRoute: typeof ProgressRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/manage': {
+      id: '/manage'
+      path: '/manage'
+      fullPath: '/manage'
+      preLoaderRoute: typeof ManageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/library': {
+      id: '/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof LibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/flashcards': {
+      id: '/flashcards'
+      path: '/flashcards'
+      fullPath: '/flashcards'
+      preLoaderRoute: typeof FlashcardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/duel': {
+      id: '/duel'
+      path: '/duel'
+      fullPath: '/duel'
+      preLoaderRoute: typeof DuelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/battle': {
+      id: '/battle'
+      path: '/battle'
+      fullPath: '/battle'
+      preLoaderRoute: typeof BattleRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +197,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  BattleRoute: BattleRoute,
+  DuelRoute: DuelRoute,
+  FlashcardsRoute: FlashcardsRoute,
+  LibraryRoute: LibraryRoute,
+  ManageRoute: ManageRoute,
+  ProgressRoute: ProgressRoute,
+  ReverseRoute: ReverseRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
