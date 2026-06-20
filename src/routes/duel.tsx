@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import type { CommandCard } from "@/lib/cards";
-import { loadCards, loadProgress, saveProgress, awardAnswer } from "@/lib/storage";
+import { loadCards } from "@/lib/storage";
 
 export const Route = createFileRoute("/duel")({
   head: () => ({
     meta: [
-      { title: "Duel Mode — CmdDeck" },
-      { name: "description", content: "Boss fight: pick the right command to damage the bug boss." },
+      { title: "Duel Arena — CmdDeck" },
+      { name: "description", content: "Summon command-monsters, attack, and reduce your opponent's life points to zero." },
     ],
   }),
   component: DuelPage,
