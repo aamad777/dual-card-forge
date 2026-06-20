@@ -14,6 +14,7 @@ import { Route as ProgressRouteImport } from './routes/progress'
 import { Route as ManageRouteImport } from './routes/manage'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as FlashcardsRouteImport } from './routes/flashcards'
+import { Route as DuelRouteImport } from './routes/duel'
 import { Route as BattleRouteImport } from './routes/battle'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -42,6 +43,11 @@ const FlashcardsRoute = FlashcardsRouteImport.update({
   path: '/flashcards',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DuelRoute = DuelRouteImport.update({
+  id: '/duel',
+  path: '/duel',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BattleRoute = BattleRouteImport.update({
   id: '/battle',
   path: '/battle',
@@ -56,6 +62,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/battle': typeof BattleRoute
+  '/duel': typeof DuelRoute
   '/flashcards': typeof FlashcardsRoute
   '/library': typeof LibraryRoute
   '/manage': typeof ManageRoute
@@ -65,6 +72,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/battle': typeof BattleRoute
+  '/duel': typeof DuelRoute
   '/flashcards': typeof FlashcardsRoute
   '/library': typeof LibraryRoute
   '/manage': typeof ManageRoute
@@ -75,6 +83,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/battle': typeof BattleRoute
+  '/duel': typeof DuelRoute
   '/flashcards': typeof FlashcardsRoute
   '/library': typeof LibraryRoute
   '/manage': typeof ManageRoute
@@ -86,6 +95,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/battle'
+    | '/duel'
     | '/flashcards'
     | '/library'
     | '/manage'
@@ -95,6 +105,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/battle'
+    | '/duel'
     | '/flashcards'
     | '/library'
     | '/manage'
@@ -104,6 +115,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/battle'
+    | '/duel'
     | '/flashcards'
     | '/library'
     | '/manage'
@@ -114,6 +126,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BattleRoute: typeof BattleRoute
+  DuelRoute: typeof DuelRoute
   FlashcardsRoute: typeof FlashcardsRoute
   LibraryRoute: typeof LibraryRoute
   ManageRoute: typeof ManageRoute
@@ -158,6 +171,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FlashcardsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/duel': {
+      id: '/duel'
+      path: '/duel'
+      fullPath: '/duel'
+      preLoaderRoute: typeof DuelRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/battle': {
       id: '/battle'
       path: '/battle'
@@ -178,6 +198,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BattleRoute: BattleRoute,
+  DuelRoute: DuelRoute,
   FlashcardsRoute: FlashcardsRoute,
   LibraryRoute: LibraryRoute,
   ManageRoute: ManageRoute,
