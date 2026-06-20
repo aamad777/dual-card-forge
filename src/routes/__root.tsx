@@ -11,10 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import "@fontsource/outfit/400.css";
-import "@fontsource/outfit/600.css";
-import "@fontsource/space-grotesk/600.css";
-import "@fontsource/space-grotesk/700.css";
+import { Nav } from "../components/Nav";
 
 function NotFoundComponent() {
   return (
@@ -122,8 +119,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <Nav />
+      <main className="mx-auto max-w-6xl px-4 py-8">
+        <Outlet />
+      </main>
     </QueryClientProvider>
   );
 }
