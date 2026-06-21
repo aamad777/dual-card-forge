@@ -15,6 +15,7 @@ import { Route as ManageRouteImport } from './routes/manage'
 import { Route as LibraryRouteImport } from './routes/library'
 import { Route as FlashcardsRouteImport } from './routes/flashcards'
 import { Route as DuelRouteImport } from './routes/duel'
+import { Route as DockerLabRouteImport } from './routes/docker-lab'
 import { Route as BattleRouteImport } from './routes/battle'
 import { Route as IndexRouteImport } from './routes/index'
 
@@ -48,6 +49,11 @@ const DuelRoute = DuelRouteImport.update({
   path: '/duel',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DockerLabRoute = DockerLabRouteImport.update({
+  id: '/docker-lab',
+  path: '/docker-lab',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BattleRoute = BattleRouteImport.update({
   id: '/battle',
   path: '/battle',
@@ -62,6 +68,7 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/battle': typeof BattleRoute
+  '/docker-lab': typeof DockerLabRoute
   '/duel': typeof DuelRoute
   '/flashcards': typeof FlashcardsRoute
   '/library': typeof LibraryRoute
@@ -72,6 +79,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/battle': typeof BattleRoute
+  '/docker-lab': typeof DockerLabRoute
   '/duel': typeof DuelRoute
   '/flashcards': typeof FlashcardsRoute
   '/library': typeof LibraryRoute
@@ -83,6 +91,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/battle': typeof BattleRoute
+  '/docker-lab': typeof DockerLabRoute
   '/duel': typeof DuelRoute
   '/flashcards': typeof FlashcardsRoute
   '/library': typeof LibraryRoute
@@ -95,6 +104,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/battle'
+    | '/docker-lab'
     | '/duel'
     | '/flashcards'
     | '/library'
@@ -105,6 +115,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/battle'
+    | '/docker-lab'
     | '/duel'
     | '/flashcards'
     | '/library'
@@ -115,6 +126,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/battle'
+    | '/docker-lab'
     | '/duel'
     | '/flashcards'
     | '/library'
@@ -126,6 +138,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BattleRoute: typeof BattleRoute
+  DockerLabRoute: typeof DockerLabRoute
   DuelRoute: typeof DuelRoute
   FlashcardsRoute: typeof FlashcardsRoute
   LibraryRoute: typeof LibraryRoute
@@ -178,6 +191,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DuelRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/docker-lab': {
+      id: '/docker-lab'
+      path: '/docker-lab'
+      fullPath: '/docker-lab'
+      preLoaderRoute: typeof DockerLabRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/battle': {
       id: '/battle'
       path: '/battle'
@@ -198,6 +218,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BattleRoute: BattleRoute,
+  DockerLabRoute: DockerLabRoute,
   DuelRoute: DuelRoute,
   FlashcardsRoute: FlashcardsRoute,
   LibraryRoute: LibraryRoute,
@@ -208,3 +229,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
